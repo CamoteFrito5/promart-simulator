@@ -1,0 +1,233 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promart Homecenter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="location-selector">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span>Dirección de Despacho:</span>
+                    <select id="department-select">
+                        <option>Selecciona un departamento</option>
+                    </select>
+                </div>
+                <div class="header-top-links">
+                    <a href="#">Seguimiento de tu compra</a>
+                    <a href="#">Venta Telefónica</a>
+                    <a href="#">Tiendas</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <img src="logo.png" alt="Promart Logo" class="logo">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="¿Qué estás buscando?">
+                    <button id="search-button"><i class="bi bi-search"></i></button>
+                </div>
+                <div class="user-actions">
+                    <div class="action-item account-action-container" id="account-action-container">
+                        <a href="#" class="account-link">
+                            <i class="bi bi-person"></i>
+                            <span>Mi Cuenta</span>
+                        </a>
+                        <div class="account-dropdown" id="account-dropdown">
+                            <ul>
+                                <li><button id="login-dropdown-btn">Iniciar Sesión</button></li>
+                                <li><a href="#">Mis Compras</a></li>
+                                <li><a href="#">Mis Listas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" class="action-item" id="cart-icon-container">
+                        <i class="bi bi-cart3"></i>
+                        <span>Mi Carrito</span>
+                        <div class="cart-dropdown" id="cart-dropdown">
+                            <div class="cart-dropdown-empty-message">Tu carrito está vacío</div>
+                            <ul id="cart-dropdown-list">
+                                <!-- Cart items will be rendered here -->
+                            </ul>
+                            <div class="cart-dropdown-footer">
+                                <p>Total: <span id="cart-dropdown-total">S/ 0.00</span></p>
+                                <button id="view-cart-btn" class="add-to-cart-btn">Ver mi Carrito</button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container nav-container">
+                <ul id="category-nav">
+                    <!-- Categories will be injected here by JavaScript -->
+                </ul>
+                <a href="#" class="nav-extra-link">Despacho a todo el Perú</a>
+                <a href="#" class="nav-extra-link">Servicio de Armado</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <div id="homepage-content">
+            <section class="hero">
+                <div class="hero-slider">
+                    <div class="slide"><img src="hero-banner.png" alt="Renueva tu Hogar, Renueva tu Vida"></div>
+                    <div class="slide"><img src="hero-banner-2.png" alt="Tu Jardín Soñado"></div>
+                    <div class="slide"><img src="hero-banner-3.png" alt="Todo para tu Proyecto"></div>
+                </div>
+            </section>
+
+            <section class="info-banners">
+                 <div class="container">
+                    <div class="info-banner">
+                        <img src="promo-1.png" alt="Oportunidades Únicas">
+                    </div>
+                    <div class="info-banner">
+                        <img src="promo-2.png" alt="Expertos en construcción">
+                    </div>
+                 </div>
+            </section>
+
+            <section class="product-grid-section">
+                <div class="container">
+                    <h2>Nuestros Productos</h2>
+                    <div class="product-grid" id="product-grid">
+                        <!-- Products will be injected here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section id="product-detail-section" style="display: none;">
+            <div class="container product-detail-wrapper">
+                <button id="back-to-products" class="back-button">
+                    <i class="bi bi-arrow-left"></i> Volver a Productos
+                </button>
+                <div class="product-detail-card">
+                    <div class="product-detail-image-container">
+                        <img id="detail-product-image" src="" alt="Product Image">
+                    </div>
+                    <div class="product-detail-info">
+                        <h1 id="detail-product-name"></h1>
+                        <p class="product-detail-price" id="detail-product-price"></p>
+                        <div class="product-detail-description">
+                            <h3>Descripción del Producto</h3>
+                            <p id="detail-product-description"></p>
+                        </div>
+                        <div class="product-detail-quantity">
+                            <label for="quantity">Cantidad:</label>
+                            <input type="number" id="quantity" value="1" min="1" max="99">
+                        </div>
+                        <button id="detail-add-to-cart" class="add-to-cart-btn">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart-section" style="display: none;">
+            <div class="container cart-wrapper">
+                <button id="back-to-homepage-from-cart" class="back-button">
+                    <i class="bi bi-arrow-left"></i> Volver al Inicio
+                </button>
+                <h2>Mi Carrito de Compras</h2>
+                <div class="cart-content">
+                    <div class="cart-items-list" id="full-cart-list">
+                        <!-- Full cart items will be rendered here -->
+                    </div>
+                    <div class="cart-summary">
+                        <h3>Resumen del Pedido</h3>
+                        <p>Subtotal (<span id="cart-total-items-count">0</span> productos): <span id="cart-summary-subtotal">S/ 0.00</span></p>
+                        <p>Costo de Envío: <span id="shipping-cost">S/ 0.00</span></p>
+                        <p class="cart-total">Total: <span id="cart-summary-total">S/ 0.00</span></p>
+                        <button class="add-to-cart-btn checkout-btn">Proceder al Pago</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="category-products-section" style="display: none;">
+            <div class="container product-grid-section-wrapper">
+                <button id="back-to-homepage-from-category" class="back-button">
+                    <i class="bi bi-arrow-left"></i> Volver al Inicio
+                </button>
+                <h2 id="category-products-title"></h2>
+                <div class="product-grid" id="category-product-grid">
+                    <!-- Category-filtered products will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Sobre Promart</h4>
+                    <a href="#">Conócenos</a>
+                    <a href="#">Trabaja con nosotros</a>
+                    <a href="#">Sostenibilidad</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Servicio al Cliente</h4>
+                    <a href="#">Preguntas Frecuentes</a>
+                    <a href="#">Contacto</a>
+                    <a href="#">Cambios y Devoluciones</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Mi Cuenta</h4>
+                    <a href="#">Ingresar</a>
+                    <a href="#">Mis Compras</a>
+                    <a href="#">Mis Listas</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Promart. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="close-login-modal">&times;</button>
+            <h3>Iniciar Sesión</h3>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" placeholder="tu@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="add-to-cart-btn login-btn">Iniciar Sesión</button>
+            </form>
+            <div class="social-login">
+                <p>O inicia sesión con:</p>
+                <button class="social-btn google-btn"><i class="bi bi-google"></i> Google</button>
+                <button class="social-btn facebook-btn"><i class="bi bi-facebook"></i> Facebook</button>
+            </div>
+            <p class="signup-link">¿No tienes cuenta? <a href="#">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
